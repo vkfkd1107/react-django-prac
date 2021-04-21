@@ -18,6 +18,20 @@ class App extends Component {
     console.log(textList);
     return (      
       <div className="App">
+        
+        <h1>--Add--</h1>
+        <div>
+          <label>
+            Text:
+            <input 
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </label>
+          <button onClick ={this.handleSubmit}>Submit</button>
+        </div>
+
         <h1>--List--</h1>
         {textList.map((text, index) => {
           return (
@@ -33,6 +47,18 @@ class App extends Component {
       </div>
     );
   }
+
+  handleChange = event => {
+    this.setState({value: event.target.value});
+  };
+
+  handleSubmit = () => {
+    const {value} =this.state;
+    axios
+      .post("/post", {text: value})
+      .then(res => this.renderText());
+  };
+
   renderText = () => {
     axios
       .get("/post")
