@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import {MovieList, MovieCreate} from './api';
+import {MovieList, MovieCreate, MovieDelete} from './api';
 import { render } from 'react-dom';
 import axios from 'axios';
 
@@ -9,7 +9,7 @@ const Movie = () => {
 
     const [title, setTitle] = useState('');
     const [genre, setGenre] = useState('');
-    const [year, setYear] = useState(2021);
+    const [year, setYear] = useState(2021);    
 
     const axiosMovieList = async () => {
         try {
@@ -31,9 +31,25 @@ const Movie = () => {
         setIsloading(false);
     }
 
+    const DeleteMovie = async (movie_id) => {
+        alert("DeleteMovie_id: "+ movie_id);
+        try {
+            setIsloading(true);
+            const deletelog = await MovieDelete(movie_id);
+        } catch(err) {
+            alert(err)
+        }
+        setIsloading(false)
+    }
+
     const renderMovieList = () =>
+        
         Movie.map(movie => (
-            <h2>{movie.title}, {movie.genre}, {movie.year}</h2>
+            <li key={movie.id}>
+                <h2>{movie.title}, {movie.genre}, {movie.year}, id: {movie.id}</h2>
+                {/* <button onClick={() => EditMovie()}>Edit</button> */}
+                <button onClick={() => DeleteMovie(movie.id)}>Delete</button>
+            </li>
         ))
 
     useEffect(() => {
