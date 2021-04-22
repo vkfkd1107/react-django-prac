@@ -32,7 +32,6 @@ const Movie = () => {
     }
 
     const DeleteMovie = async (movie_id) => {
-        alert("DeleteMovie_id: "+ movie_id);
         try {
             setIsloading(true);
             const deletelog = await MovieDelete(movie_id);
@@ -42,12 +41,16 @@ const Movie = () => {
         setIsloading(false)
     }
 
+    const EditMovie = async (movie_id)=> {
+        alert("EditMovie: "+movie_id);
+    }
+
     const renderMovieList = () =>
         
         Movie.map(movie => (
             <li key={movie.id}>
                 <h2>{movie.title}, {movie.genre}, {movie.year}, id: {movie.id}</h2>
-                {/* <button onClick={() => EditMovie()}>Edit</button> */}
+                <button onClick={() => EditMovie(movie.id)}>Edit</button>
                 <button onClick={() => DeleteMovie(movie.id)}>Delete</button>
             </li>
         ))
