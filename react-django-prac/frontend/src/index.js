@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import Test from './test';
 import Movie from './movie';
+import TestModal from './modal';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Movie />
+    <TestModal />
   </React.StrictMode>,
   document.getElementById('root')
 );
