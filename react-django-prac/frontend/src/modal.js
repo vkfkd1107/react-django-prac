@@ -13,11 +13,11 @@ const customStyles = {
     }
   };
 
-// Modal.setAppElement('Modal practice');
 
 function TestModal() {
+    var subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
-
+    
     function openModal() {
         setIsOpen(true);
     }
@@ -27,20 +27,27 @@ function TestModal() {
     }
 
     return (
-        <div>
+        <div>            
             <button onClick={openModal}>Open Modal</button>
-            <Modal
+            <Modal 
                 isOpen={modalIsOpen}
+                style={customStyles}  
                 onRequestClose={closeModal}
-                style={customStyles}
                 contentLabel="Example Modal"
             >
-                <h2>Hello</h2>
-                <div>I am a modal</div>
+                <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2>
+                <div>I am a Modal</div>
                 <button onClick={closeModal}>close</button>
+                <form>
+                    <input />
+                    <button>tab navigation</button>
+                    <button>stays</button>
+                    <button>inside</button>
+                    <button>the modal</button>
+                </form>
             </Modal>
         </div>
     );
 }
 
-export default TestModal
+export default TestModal;
