@@ -16,3 +16,4 @@ export const MovieCreate = ((title, genre, year) => API.post("/movie/", {
     year: year
 }));
 export const MovieDelete = ((id) => API.delete(`/movie/${id}`));
+export const MovieGet = ((id) => API.get(`/movie/${id}`));

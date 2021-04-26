@@ -1,7 +1,9 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import {MovieList, MovieCreate, MovieDelete} from './api';
+import {MovieList, MovieCreate, MovieDelete, MovieGet} from './api';
+import Modal from 'react-modal';
 import { render } from 'react-dom';
 import axios from 'axios';
+
 
 const Movie = () => {
     const [Movie, setMovie] = useState([])
@@ -14,7 +16,7 @@ const Movie = () => {
     const axiosMovieList = async () => {
         try {
             const movie = await MovieList()
-            console.log(movie.data)
+            // console.log(movie.data)
             setMovie(movie.data)
         }catch (err){
             alert(err)
@@ -41,19 +43,24 @@ const Movie = () => {
         setIsloading(false)
     }
 
-    const EditMovie = async (movie_id)=> {
-        alert("EditMovie: "+movie_id);
+    // 특정 id를 받으면 그 id를 기반으로 object를 get요청으로 불러온다
+    const MovieIdtoObj = async (id) => {
+        try {
+            const obj = await MovieGet(id);
+            console.log(obj.data);
+        }catch(err) {
+            alert(err)
+        }
     }
 
-    const renderMovieList = () =>
-        
+    const renderMovieList = () =>      
         Movie.map(movie => (
             <li key={movie.id}>
                 <h2>{movie.title}, {movie.genre}, {movie.year}, id: {movie.id}</h2>
-                <button onClick={() => EditMovie(movie.id)}>Edit</button>
+                <button onClick={() => MovieIdtoObj(movie.id)}>Edit</button>
                 <button onClick={() => DeleteMovie(movie.id)}>Delete</button>
             </li>
-        ))
+        ));
 
     useEffect(() => {
         axiosMovieList();
@@ -76,7 +83,7 @@ const Movie = () => {
                 <button onClick={handerPushedMovie}>Add</button>
             </div>
         </Fragment>
-    )
+    );
 }
 
 export default Movie
