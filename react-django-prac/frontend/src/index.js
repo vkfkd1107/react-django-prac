@@ -5,7 +5,9 @@ import App from './App';
 import Test from './test';
 import Movie from './movie';
 import TestModal from './modal';
+import TestRouter from './router';
 import reportWebVitals from './reportWebVitals';
+import TestForm from './prac_form';
 
 ReactDOM.render(
   <React.StrictMode>
