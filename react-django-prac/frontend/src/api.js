@@ -8,13 +8,16 @@ const API = axios.create();
 // get: read
 // put: update
 // delete: delete
+// patch: 특정값 수정
 
 export const MovieList = () => API.get("/movie/");
-export const MovieCreate = ((title, genre, year) => API.post("/movie/", {
+
+export const MovieCreate = ((title, genre, year) => API.post("/movie/custom/", {
     title: title,
     genre: genre,
     year: year
 }));
+
 export const MovieDelete = ((id) => API.delete(`/movie/${id}`));
 export const MovieGet = ((id) => API.get(`/movie/${id}`));
 export const MovieEdit = ((id,title, genre, year) => API.put(`/movie/${id}/`, {
