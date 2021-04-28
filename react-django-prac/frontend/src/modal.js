@@ -31,7 +31,7 @@ function TestModal() {
             <button onClick={openModal}>Open Modal</button>
             <Modal 
                 isOpen={modalIsOpen}
-                style={customStyles}  
+                // style={customStyles}  
                 onRequestClose={closeModal}
                 contentLabel="Example Modal"
             >
