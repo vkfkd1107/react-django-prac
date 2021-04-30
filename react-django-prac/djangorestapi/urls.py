@@ -13,6 +13,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     # path('',views.MovieViewSet.movie_all),
-    # path('movie/custom/', views.MovieViewSet.movie_all),
-    # path('movie/custom2/', views.MovieViewSet.movie_02)
+    # 이 url로 접속 시 http://127.0.0.1:8000/movie/movie_all/?name=Test
+    # path('movie_all/', views.MovieViewSet.movie_all),
+    # path('movie_all/', views.MovieViewSet.movie_all),
+    # path('movie/movie_param/', views.MovieViewSet.movie_param),
 ]
