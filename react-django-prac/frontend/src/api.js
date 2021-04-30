@@ -12,7 +12,7 @@ const API = axios.create();
 
 export const MovieList = () => API.get("/movie/");
 
-export const MovieCreate = ((title, genre, year) => API.post("/movie/custom/", {
+export const MovieCreate = ((title, genre, year) => API.post("/movie/", {
     title: title,
     genre: genre,
     year: year
@@ -25,3 +25,7 @@ export const MovieEdit = ((id,title, genre, year) => API.put(`/movie/${id}/`, {
     genre: genre,
     year: year
 }));
+
+
+// 여러값에 대한 parameter 전달
+// 예시) `/api/beers/add/${name}/${country}/${color}/${alcoholPercent}`
