@@ -35,6 +35,9 @@ export const MovieData = () => axios({
     }
 });
 
-
 // 여러값에 대한 parameter 전달
-// 예시) `/api/beers/add/${name}/${country}/${color}/${alcoholPercent}`
+// 예시) `/api/beers/add/?name=${name}&country=${country}&color=${color}&alco=${alcoholPercent}`
+export const MovieParam = (prac, prac2, prac3, prac4) => axios({
+    method: 'post',
+    url: `/movie/movie_param/?name=${prac}&name2=${prac2}&name3=${prac3}&name4=${prac4}`
+})

@@ -49,11 +49,14 @@ class MovieViewSet(viewsets.ModelViewSet):
             # name을 불러온다.
             # request를 받을 시 무조건 url에 ?name 등과 같은 parameter가 붙어야 된다
             print("name: "+request.query_params['name'])
-            print("param: "+request.query_params['param'])
+            print("name2: "+request.query_params['name2'])
+            print("name3: "+request.query_params['name3'])
+            print("name4: "+request.query_params['name4'])
+            # print("param: "+request.query_params['param'])
             print(request)
             queryset = Movie.objects.all()
             serializer = MovieSerializer(queryset, many=True)
-            return Response(request.query_params['name'])
+            return Response(request.query_params)
         else:
             print("request is null")
             queryset = Movie.objects.all()
