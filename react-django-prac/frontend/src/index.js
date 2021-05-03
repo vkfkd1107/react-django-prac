@@ -12,7 +12,7 @@ import TestForm from './prac_form';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Movie />
+    <Button />
   </React.StrictMode>,
   document.getElementById('root')
 );

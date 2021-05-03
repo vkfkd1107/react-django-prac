@@ -26,6 +26,15 @@ export const MovieEdit = ((id,title, genre, year) => API.put(`/movie/${id}/`, {
     year: year
 }));
 
+export const MovieData = () => axios({
+    method: 'post',
+    url: '/movie/movie_data/',
+    data: {
+        name: '마녀',
+        number: '1'
+    }
+});
+
 
 // 여러값에 대한 parameter 전달
 // 예시) `/api/beers/add/${name}/${country}/${color}/${alcoholPercent}`

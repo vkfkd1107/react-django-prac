@@ -43,14 +43,22 @@ class MovieViewSet(viewsets.ModelViewSet):
 #   이 함수를 부를때는 request가 있는 경우만 부르도록 한다
 #   url: movie/movie_param/?{parameter=data}        //class이름/함수이름/parameter
     @action(detail=False, methods=['get', 'post', 'delete', 'put'], name='Change Password')
-    def movie_param(self, request):
+    def movie_param(self, request):        
         print('movie param')
-        # name을 불러온다.
-        # request를 받을 시 무조건 url에 ?name 등과 같은 parameter가 붙어야 된다
-        print("name: "+request.query_params['name'])
-        queryset = Movie.objects.all()
-        serializer = MovieSerializer(queryset, many=True)
-        return Response(request.query_params['name'])
+        if(request!=None or request!='' or request!=' '):            
+            # name을 불러온다.
+            # request를 받을 시 무조건 url에 ?name 등과 같은 parameter가 붙어야 된다
+            print("name: "+request.query_params['name'])
+            print("param: "+request.query_params['param'])
+            print(request)
+            queryset = Movie.objects.all()
+            serializer = MovieSerializer(queryset, many=True)
+            return Response(request.query_params['name'])
+        else:
+            print("request is null")
+            queryset = Movie.objects.all()
+            serializer = MovieSerializer(queryset, many=True)
+            return Response(serializer.data)
 
 #   parameter가 있는 movie의 개별 데이터
 #   이 함수를 부를때는 request가 있는 경우만 부르도록 한다
@@ -62,6 +70,17 @@ class MovieViewSet(viewsets.ModelViewSet):
         # return Response(serializer.data)        
         instance = self.get_object()
         serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+#   axios를 이용한 data를 보내고 받는 것
+    @action(detail=False, methods=['get', 'post', 'delete', 'put'], name='movie_all')
+    def movie_data(self, request):
+        queryset = Movie.objects.all()
+        serializer = MovieSerializer(queryset, many=True)
+        print(request)
+        print(request.method)
+        print(request.data)      
+        print(request.data['name'])     
         return Response(serializer.data)
 
 class ReviewViewSet(viewsets.ModelViewSet):
